@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>原価ルアーに賛同してくれたあなたへ｜0円で応援できるページ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="原価販売ルアーの取り組みを0円で応援できます。無料登録のご紹介、LINE追加、1分アンケ、リピート購入導線をまとめました。">
+  <meta property="og:title" content="原価ルアーを0円で応援">
+  <meta property="og:description" content="無料登録・LINE・釣果アンケ・再購入リンク。広告を含みます。">
+  <meta property="og:type" content="website">
+  <meta name="format-detection" content="telephone=no">
+  <style>
+    :root{
+      --bg:#0f172a;        /* 深い紺 */
+      --panel:#111827;     /* ダークグレー */
+      --ink:#e5e7eb;       /* 明るい字色 */
+      --muted:#94a3b8;     /* 補助テキスト */
+      --accent:#22d3ee;    /* 水色アクセント */
+      --ok:#34d399;        /* 成功系 */
+      --warn:#f59e0b;      /* 注意 */
+      --radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --max:1040px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b1225,#0f172a);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,"Helvetica Neue","Hiragino Kaku Gothic ProN","Noto Sans JP",Arial,sans-serif;line-height:1.7}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{opacity:.9}
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px 18px 80px}
+    header{display:flex;align-items:center;gap:14px;margin:6px 0 20px}
+    .logo{width:44px;height:44px;border-radius:12px;background:radial-gradient(120% 120% at 0% 0%,#22d3ee 0%,#06b6d4 35%,#0ea5e9 70%,#0369a1 100%);box-shadow:var(--shadow)}
+    .brand{font-weight:700;font-size:18px}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:center}
+    @media (max-width:900px){.hero{grid-template-columns:1fr}}
+    .card{background:rgba(17,24,39,.7);backdrop-filter:saturate(130%) blur(8px);border:1px solid rgba(148,163,184,.15);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+    h1{font-size:28px;line-height:1.3;margin:.2em 0 .4em}
+    .tag{display:inline-flex;gap:8px;align-items:center;background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.35);color:#a5f3fc;padding:6px 10px;border-radius:999px;font-size:12px}
+    .muted{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:12px;padding:14px 16px;font-weight:600;border:1px solid rgba(148,163,184,.25);background:#0b1326;transition:.15s}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{background:linear-gradient(180deg,#22d3ee,#0ea5e9);color:#092433;border:none}
+    .btn.line{background:#06c755;color:#042410;border:none}
+    .btn.full{width:100%}
+    .btn.small{padding:10px 12px;font-weight:600}
+    .stack{display:flex;flex-direction:column;gap:12px}
+    .pill{display:inline-flex;gap:8px;align-items:center;font-size:12px;background:#0b1326;border:1px solid rgba(148,163,184,.25);padding:6px 10px;border-radius:999px}
+    .note{font-size:12px;color:var(--muted)}
+    .section{margin-top:26px}
+    .list{margin:0;padding-left:18px}
+    footer{margin-top:40px;font-size:12px;color:var(--muted)}
+    .ok{color:var(--ok)} .warn{color:var(--warn)}
+    .badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;padding:4px 8px;border-radius:999px;background:#182034;border:1px solid rgba(148,163,184,.2)}
+    .flex{display:flex;gap:12px;flex-wrap:wrap}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:12px}
+  </style>
+  <!-- TODO:（任意）GA4を使う場合は下記を有効化し、測定IDに差し替え -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer=window.dataLayer||[];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js',new Date());
+    gtag('config','G-XXXXXXXXXX'); // ←あなたのGA4
+  </script>
+  -->
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <div class="brand">GENKA LURE PROJECT</div>
+        <div class="muted" id="srcLabel">原価ルアーに賛同ありがとうございます。</div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="card">
+        <span class="tag">原価販売を続けるための “0円で応援”</span>
+        <h1>メーカー価格が高すぎる。だから僕らは<strong>原価で売る</strong>。</h1>
+        <p class="muted">釣りの裾野を広げたい。あなたのお金は1円もいりません。<br>代わりに、次のどれかをタップしてもらえると継続の力になります。</p>
+        <div class="flex" style="margin-top:10px">
+          <span class="badge">このページは <span class="ok">広告（アフィリエイト）</span> を含みます</span>
+          <span class="badge">個人の特定は行いません</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="stack">
+          <div class="pill">A/BテストID: <span class="mono" id="abid">-</span></div>
+          <div class="pill">リンクに付与されるトラッキング: <span class="mono" id="utmEcho">-</span></div>
+          <p class="note">※ サンキューカードのQRに <span class="mono">?src=card_v1&sku=XXXX</span> のようなパラメータを付けると、全リンクに自動で引き継ぎます。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid section">
+      <!-- 0円応援：無料トライアル/無料登録 -->
+      <div class="card">
+        <h2>① 0円で応援：無料サービスに登録</h2>
+        <p class="muted">月額は発生しません（無料期間／無料会員）。各ボタンから公式サイトへ。※本人申込はNGの案件が多いです。</p>
+        <div class="stack">
+          <!-- TODO: ここにあなたのアフィリンクを設定 -->
+          <a class="btn primary full" data-label="fishingvod" href="https://example.com/af/fishingvod" target="_blank" rel="noopener">釣り系VODを14日無料で試す</a>
+          <a class="btn full" data-label="app" href="https://example.com/af/fishingapp" target="_blank" rel="noopener">潮汐/釣果アプリ（無料登録）</a>
+        </div>
+        <p class="note">広告表示：成果報酬を受け取る場合があります。</p>
+      </div>
+
+      <!-- LINE -->
+      <div class="card">
+        <h2>② LINEで“釣れた色速報”</h2>
+        <p class="muted">月1回、実釣データから“今月の実績カラー”を配信。限定クーポンが届くことも。</p>
+        <!-- TODO: あなたのLINE公式URLに差し替え -->
+        <a class="btn line full" data-label="line" href="https://line.me/R/ti/p/@YOUR_LINE_ID" target="_blank" rel="noopener">LINE公式を追加する</a>
+        <p class="note">ブロックはいつでもOK。個人特定はしません。</p>
+      </div>
+
+      <!-- 釣果アンケ -->
+      <div class="card">
+        <h2>③ 1分釣果アンケ（匿名）</h2>
+        <p class="muted">色・時間帯・潮位だけの簡単回答。統計化して公開します。</p>
+        <!-- TODO: GoogleフォームURLに差し替え -->
+        <a class="btn full" data-label="survey" href="https://docs.google.com/forms/d/e/XXXXXXXXXXX/viewform" target="_blank" rel="noopener">アンケートに答える</a>
+        <p class="note">お礼に抽選でステッカー。</p>
+      </div>
+
+      <!-- 再購入 -->
+      <div class="card">
+        <h2>④ リピート購入</h2>
+        <p class="muted">原価販売の継続のため、また必要な時に思い出してください。</p>
+        <div class="stack">
+          <!-- TODO: あなたの各ショップURLに差し替え -->
+          <a class="btn full" data-label="mercari" href="https://mercari-shops.com/yourshop" target="_blank" rel="noopener">メルカリShopsへ</a>
+          <a class="btn full" data-label="yahoo" href="https://store.shopping.yahoo.co.jp/yourshop/" target="_blank" rel="noopener">Yahoo!ショッピングへ</a>
+          <a class="btn full" data-label="rakuten" href="https://www.rakuten.co.jp/yourshop/" target="_blank" rel="noopener">楽天市場へ</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>理念</h2>
+      <p>僕らは「釣りの入口コスト」を下げたい。そのために、ルアーは**あえて原価**で出しています。代わりに、無料でできる応援やデータ協力をお願いしています。すべては釣果で返します。</p>
+      <ul class="list">
+        <li>実釣データは統計化して公開（個人・釣り場の特定はしません）</li>
+        <li>アフィリエイト等の広告収益は運営費に充当</li>
+        <li>“売りたい物”ではなく“釣れる物”を作る</li>
+      </ul>
+    </section>
+
+    <footer>
+      <div class="flex">
+        <span>© <span id="year"></span> Genka Lure Project</span>
+        <span>｜</span>
+        <a href="#privacy">プライバシー</a>
+        <span>｜</span>
+        <a href="#legal">表記</a>
+      </div>
+      <div id="privacy" class="section">
+        <strong>プライバシー</strong><br>
+        当サイトはアクセス解析にクッキー等を用いる場合があります。取得する情報は匿名化し、個人の特定は行いません。<br>
+        釣果アンケは任意・匿名で、統計目的のみで利用します。
+      </div>
+      <div id="legal" class="section">
+        <strong>広告に関する表示</strong><br>
+        本ページには広告（アフィリエイトリンク）が含まれます。リンク先での申込み等により運営者に成果報酬が支払われる場合があります。
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // ---- UTM/QRパラメータの受取 → ローカルに保存 → 全リンクへ引き継ぎ ----
+    (function(){
+      const params = new URLSearchParams(location.search);
+      const known = ["src","sku","v","utm_source","utm_medium","utm_campaign"];
+      // 保存（上書き優先）
+      known.forEach(k=>{
+        const val=params.get(k);
+        if(val){ localStorage.setItem("utm_"+k, val); }
+      });
+      // A/B用の簡易ID（無ければ生成）
+      let ab = localStorage.getItem("ab_id");
+      if(!ab){ ab = Math.random().toString(36).slice(2,8); localStorage.setItem("ab_id",ab); }
+      document.getElementById("abid").textContent = ab;
+
+      // 表示ラベル
+      const echo = known.map(k=>localStorage.getItem("utm_"+k)? `${k}=${localStorage.getItem("utm_"+k)}`:null).filter(Boolean).join("&");
+      document.getElementById("utmEcho").textContent = echo || "(なし)";
+      const srcLabel = localStorage.getItem("utm_src") || localStorage.getItem("utm_source") || params.get("src") || "thank you";
+      document.getElementById("srcLabel").textContent = `原価ルアーに賛同ありがとうございます（from: ${srcLabel}）`;
+
+      // 全外部リンクに付与
+      const addParams = new URLSearchParams();
+      known.forEach(k=>{
+        const v = localStorage.getItem("utm_"+k);
+        if(v) addParams.set(k, v);
+      });
+      if(addParams.toString()){
+        document.querySelectorAll('a[href^="http"]').forEach(a=>{
+          try{
+            const u = new URL(a.href);
+            // 既存のパラメータを壊さないように追記
+            addParams.forEach((v,k)=>{ if(!u.searchParams.has(k)) u.searchParams.set(k,v); });
+            // クリックイベント時に反映（動的生成サイト対策）
+            a.addEventListener('click', (e)=>{
+              a.href = u.toString();
+            });
+          }catch(_){}
+        });
+      }
+
+      // クリック計測（gtagがあれば送る）
+      function fire(label){
+        if(typeof gtag==='function'){
+          gtag('event','outbound_click',{event_category:'engagement',event_label:label});
+        }
+      }
+      document.querySelectorAll('a[data-label]').forEach(a=>{
+        a.addEventListener('click',()=>fire(a.dataset.label));
+      });
+
+      // 年号
+      document.getElementById("year").textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
