@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>iPhone 17シリーズ 買取率ランキング（モバステ自動取得対応）</title>
+  <link rel="stylesheet" href="./assets/styles.css">
+  <script src="./assets/data.js"></script>
+  <script src="./assets/app.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="hdr">
+      <div class="logo">📱 iPhone 17シリーズ 買取ダッシュボード</div>
+      <div class="small">最終更新: <span id="updated"></span></div>
+    </div>
+
+    <div class="card">
+      <h1>最新買取率ランキング（色別集計）</h1>
+      <div class="kicker">対象：iPhone 17 / 17 Pro / 17 Pro Max（SIMフリー/新品・未開封）</div>
+      <div class="filters" id="store-filters" style="margin-top:10px"></div>
+      <div class="small" style="margin-top:6px">※ チェックを外した店舗は集計から除外。色別価格がある場合は<strong>色ごとに別モデル</strong>として集計。</div>
+
+      <table class="table" id="ranking">
+        <thead><tr><th>#</th><th>モデル（容量/色）</th><th>最高買取（有効店舗）</th><th>定価</th><th>買取率</th><th>利益</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <footer class="small">© 2025 iPhone 17 買取ダッシュボード</footer>
+  </div>
+
+  <script>
+    function render(){
+      document.getElementById('updated').textContent=(window.PRICE_DATA.last_built_at||'').replace('T',' ').replace('+09:00',' (JST)');
+      const tb=document.querySelector('#ranking tbody');tb.innerHTML='';const items=window.SITE.buildItems();
+      items.forEach((it,idx)=>{
+        const rate=it.top.price_jpy/it.msrp*100;const profit=it.top.price_jpy-it.msrp;
+        const stores=it.perStore.map(p=>`${p.store}: ${formatJPY(p.price_jpy)}`).join('<br>');
+        const tr=document.createElement('tr');const color=(it.color&&it.color!=='全色')?` / ${it.color}`:'';
+        tr.innerHTML=`<td class="rank">${idx+1}</td><td>${it.title}${color}</td><td>${formatJPY(it.top.price_jpy)}<div class="small">${it.top.store}</div><div class="small">${stores}</div></td><td>${formatJPY(it.msrp)}</td><td>${(rate).toFixed(2)}%</td><td>${formatJPY(profit)}</td>`;
+        tb.appendChild(tr);
+      });
+    }
+    window.onFiltersApplied=render;window.SITE.renderStoreFilters(document.getElementById('store-filters'));render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+
+{
+  "name": "iphone17-buyback-rate-dashboard",
+  "version": "1.2.0",
+  "type": "module",
+  "private": true,
+  "scripts": { "update": "node scripts/update.mjs" },
+  "engines": { "node": ">=20" }
+}

@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>iPhone 17シリーズ 詳細（モバステ自動取得対応）</title>
+  <link rel="stylesheet" href="./assets/styles.css">
+  <script src="./assets/data.js"></script>
+  <script src="./assets/app.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="hdr">
+      <div class="logo">📈 詳細ビュー</div>
+      <div class="small">最終更新: <span id="updated"></span></div>
+    </div>
+
+    <div class="card">
+      <h1 id="title"></h1>
+      <div class="filters" id="store-filters"></div>
+      <div class="small" style="margin-top:6px">※ チェックを外した店舗は一覧と同様に除外されます。</div>
+      <div style="margin-top:10px">
+        <label>色の選択: <select id="colorSel"></select></label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>各店の現在価格（高い順）</h2>
+      <table class="table" id="price-table">
+        <thead><tr><th>#</th><th>店舗</th><th>価格</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <footer class="small">© 2025 iPhone 17 買取ダッシュボード</footer>
+  </div>
+
+  <script>
+    const params=new URLSearchParams(location.search);const sku=params.get('sku')||'iphone17-256';
+    const v=window.PRICE_DATA.variants.find(x=>x.sku===sku);document.getElementById('updated').textContent=(window.PRICE_DATA.last_built_at||'').replace('T',' ').replace('+09:00',' (JST)');
+    const msrp=window.PRICE_DATA.msrp[sku];
+    function fillColors(){const sel=document.getElementById('colorSel');const colors=Object.keys(v.colors||{"全色":{}});colors.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;sel.appendChild(o)});const q=params.get('color');if(q&&colors.includes(q))sel.value=q;sel.addEventListener('change',renderTable)}
+    function renderTitle(){const color=document.getElementById('colorSel').value||'全色';document.getElementById('title').textContent=`${v.title} / ${color} / 定価 ${formatJPY(msrp)}`}
+    function renderTable(){renderTitle();const {selected}=window.SITE.getStoreFilters();const color=document.getElementById('colorSel').value||'全色';const per=[];for(const st of selected){let price=(v.colors?.[color]||{})[st];if(price==null){const p=(v.prices||[]).find(x=>x.store===st&&x.price_jpy!=null);price=p?p.price_jpy:null}if(price!=null){const link=(v.prices||[]).find(x=>x.store===st)?.link||'#';per.push({store:st,price_jpy:price,link})}}per.sort((a,b)=>b.price_jpy-a.price_jpy);const tb=document.querySelector('#price-table tbody');tb.innerHTML='';per.forEach((r,i)=>{const tr=document.createElement('tr');tr.innerHTML=`<td class="rank">${i+1}</td><td><a href="${r.link}" target="_blank" rel="noopener">${r.store}</a></td><td>${formatJPY(r.price_jpy)}</td>`;tb.appendChild(tr)})}
+    function init(){window.SITE.renderStoreFilters(document.getElementById('store-filters'));window.onFiltersApplied=renderTable;fillColors();renderTable()}
+    init();
+  </script>
+</body>
+</html>
