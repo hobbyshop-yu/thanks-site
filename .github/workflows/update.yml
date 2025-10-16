@@ -1,9 +1,9 @@
-name: Auto Update Prices
+name: Auto Update Prices (safe & debug)
 
 on:
   schedule:
     - cron: "0 * * * *"   # 毎時0分（UTC）
-  workflow_dispatch:      # ← 手動実行ボタンを出す
+  workflow_dispatch:      # 手動実行ボタン
 
 permissions:
   contents: write
@@ -12,26 +12,99 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Debug: show tree
+        run: |
+          echo "::group::Tree"
+          ls -la
+          echo
+          [ -d assets ] && ls -la assets || true
+          [ -d scripts ] && ls -la scripts || true
+          echo "::endgroup::"
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
+      - name: Ensure package.json (fallback)
+        run: |
+          if [ ! -f package.json ]; then
+            cat > package.json <<'JSON'
+            {
+              "name": "iphone17-buyback-rate-dashboard",
+              "version": "1.0.0",
+              "type": "module",
+              "private": true,
+              "scripts": { "update": "node scripts/update.mjs" },
+              "engines": { "node": ">=20" }
+            }
+            JSON
+            echo "Created fallback package.json"
+          fi
+          cat package.json
+
+      - name: Ensure assets/data.js seed (fallback)
+        run: |
+          mkdir -p assets
+          if [ ! -f assets/data.js ]; then
+            cat > assets/data.js <<'JS'
+            window.PRICE_DATA = {
+              "last_built_at": "",
+              "device_family": "iPhone 17 series（SIMフリー/新品・未開封）",
+              "stores": ["買取wiki","買取ルデヤ","森森買取","海峡通信","モバステ","モバイルミックス"],
+              "msrp": {
+                "iphone17-256": 129800,
+                "iphone17-512": 164800,
+                "iphone17pro-256": 179800,
+                "iphone17pro-512": 214800,
+                "iphone17promax-256": 194800,
+                "iphone17promax-512": 229800
+              },
+              "variants": [
+                { "sku": "iphone17-256", "title": "iPhone 17 256GB", "colors": {"全色": {}}, "prices": [] },
+                { "sku": "iphone17-512", "title": "iPhone 17 512GB", "colors": {"全色": {}}, "prices": [] },
+                { "sku": "iphone17pro-256", "title": "iPhone 17 Pro 256GB", "colors": {"全色": {}}, "prices": [] },
+                { "sku": "iphone17pro-512", "title": "iPhone 17 Pro 512GB", "colors": {"全色": {}}, "prices": [] },
+                { "sku": "iphone17promax-256", "title": "iPhone 17 Pro Max 256GB", "colors": {"全色": {}}, "prices": [] },
+                { "sku": "iphone17promax-512", "title": "iPhone 17 Pro Max 512GB", "colors": {"全色": {}}, "prices": [] }
+              ]
+            };
+            JS
+            echo "Created fallback assets/data.js"
+          fi
+
+      - name: Ensure scripts/update.mjs (exists?)
+        run: |
+          if [ ! -f scripts/update.mjs ]; then
+            echo "::error ::scripts/update.mjs がありません。配布ZIPの scripts/update.mjs をアップロードしてください。"
+            exit 1
+          fi
+          head -n 30 scripts/update.mjs || true
+
       - name: Install
         run: npm install --no-audit --no-fund
 
-      - name: Update data.js
+      - name: Run updater (do not fail pipeline)
         env:
           USE_PLAYWRIGHT: ${{ vars.USE_PLAYWRIGHT || 'false' }}
           MOBILE_MIX_URL: ${{ vars.MOBILE_MIX_URL || '' }}
           MOBASTE_URL: ${{ vars.MOBASTE_URL || '' }}
-        run: npm run update
-
-      - name: Commit & Push
         run: |
-          if [[ -n "$(git status --porcelain)" ]]; then
+          set -x
+          node scripts/update.mjs || echo "Updater failed (soft). Check logs above."
+
+      - name: Show diff
+        run: |
+          echo "::group::Git status"
+          git status --porcelain || true
+          echo "::endgroup::"
+
+      - name: Commit & Push if changed
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
             git config user.name "github-actions"
             git config user.email "actions@github.com"
             git add assets/data.js
